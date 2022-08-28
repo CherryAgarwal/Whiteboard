@@ -1,7 +1,6 @@
 import keymage from "keymage";
 import { io } from "socket.io-client";
 import whiteboard from "./whiteboard";
-import keybinds from "./keybinds";
 import Picker from "vanilla-picker";
 import { dom } from "@fortawesome/fontawesome-svg-core";
 import shortcutFunctions from "./shortcutFunctions";
@@ -237,21 +236,7 @@ function initWhiteboard() {
             }
         });
 
-        //Load keybindings from keybinds.js to given functions
-        Object.entries(keybinds).forEach(([key, functionName]) => {
-            const associatedShortcutFunction = shortcutFunctions[functionName];
-            if (associatedShortcutFunction) {
-                keymage(key, associatedShortcutFunction, { preventDefault: true });
-            } else {
-                console.error(
-                    "Function you want to keybind on key:",
-                    key,
-                    "named:",
-                    functionName,
-                    "is not available!"
-                );
-            }
-        });
+ 
 
         // whiteboard clear button
         $("#whiteboardTrashBtn")
